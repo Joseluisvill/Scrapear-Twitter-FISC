@@ -2,8 +2,8 @@
 
 Esta aplicacion extrae de FISC Twitter, los ultimos tweets
 
-Para utilizarlo clonar el repo, luego en la consolo
-activar el entorno virtual para la utilizar las dependencias sin haberlas instalados
+Para utilizarlo clonar el repo, luego en la consola
+Activar el entorno virtual para la utilizar las dependencias sin haberlas instalados
 
 ### `env\Scripts\activate.bat`
 
