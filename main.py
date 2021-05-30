@@ -14,6 +14,7 @@ driver.get('https://twitter.com/utpfisc')
 def main():
     #selecciono el aparcado contenedor del tweet
     div=driver.find_elements_by_xpath('//div[@data-testid="tweet"]')
+    print(len(div))
 
     for d in div: 
         #Imprimo el contenido de dentro del tweet
@@ -21,13 +22,22 @@ def main():
         print(texto_tweet.text)
         
         #Obtengo la imagen del tweet
-        imagen=d.find_element_by_xpath('./div[2]/div[2]/div[2]/div/div/div/div/a/div/div[2]/div/img').get_attribute("src")
-
-        if bool(imagen):
-            print("Imagen> "+imagen)
-            print('********************************************************************************\n')
+        # Una sola imagen 
+        # imagen=d.find_element_by_xpath('./div[2]/div[2]/div[2]/div/div/div/div/a/div/div[2]/div/img').get_attribute("src")
+        
+        #Multiples Imagenes
+        imagenes=d.find_elements_by_class_name("css-9pa8cd")
+        tam=len(imagenes)-1
+        if(tam==1):
+            src=imagenes[1].get_attribute("src")
+            if bool(src):
+                print("Imagen> "+src)
         else:
-            print('********************************************************************************\n')
+            for a in range(1,tam+1):
+                src=imagenes[a].get_attribute("src")
+                if bool(src):
+                    print("Imagen> "+src)
+        print('********************************************************************************\n')
 
 if __name__ == '__main__':
     main()
