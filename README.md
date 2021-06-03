@@ -1,35 +1,41 @@
 # Scrapear-Twitter-FISC
 
-Esta aplicacion extrae los tweets de twitter.com/utpfisc
+Esta aplicación extrae los tweets de [FISC](twitter.com/utpfisc)
 - Python
 - Selenium
 
-Para utilizarlo clonar el repo
+Soporta los siguientes navegadores
+- Google Chrome
+- Microsoft Edge
+
+Para utilizarlo, clonar el repositorio
 ### `git clone https://github.com/Joseluisvill/Scrapear-Twitter-FISC.git`
 
 
-Luego ir a la carpeta contenerdora de la aplicacionen 
+Luego ir a la carpeta contenerdora de la aplicación
 
-Abrir la consola en el directorio de la aplicacion
+Abrir la consola en el directorio de la aplicación
 
-Activar el entorno virtual
+## Activar el entorno virtual
 
 ### `env\Scripts\activate.bat`
 
-Luego podran iniciar el programa.
+## Instalar las dependencias 
+### `pip install -r requirements.txt`
+Luego podrán iniciar el programa.
 
 ### `python main.py`
 
 
-## Puntos importantes
+## Puntos Importantes
 
-En la consola saldran inputs los cuales uno es para la lectura de muchos tweet(colocar números enteros) y el otro para filtrar por palabras especificas "deben estar separadas por espacios".
+En la consola saldrán inputs los cuales uno es para la lectura de muchos tweet(colocar números enteros) y el otro para filtrar por palabras específicas "deben estar separadas por espacios" y por ultimo para seleccionar el navegador.
 
 
-Ejemplo:
+## Ejemplo:
 ### oferta vacante practica
 
-También puede ver los demás tweet colocando en el input `todos `
+También puede ver los demás tweet colocando en el input `todos`
 
 Para aprender más de seleniun [Documentación](https://selenium-python.readthedocs.io/)
 

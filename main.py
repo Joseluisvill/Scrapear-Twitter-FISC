@@ -1,28 +1,37 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from msedge.selenium_tools import Edge, EdgeOptions
 from selenium.webdriver.common.keys import Keys
 import time
 
 
-#contador para detener la ejecucion del while
-lim=int(input("Coloque el maximo de repeticiones del while> "))
+#Eleccion de Navegador
+def tipoNavegador():
+    opc=int(input("Escoja el número del navegador:\n1.Chrome\n2.Edge\nOpcion>"))
+    if opc<1 or opc>2:
+        tipoNavegador()
+    return opc
 
-#Para buscar por palabra
-text=input("Coloque palabra para buscar en los tweets> ").split()
+def navegador(opc):
+    if opc==1:
+        op=Options()
+        #Para que no aparezca el error de chrome
+        op.add_experimental_option('excludeSwitches',['enable-logging'])
 
-op=Options()
+        driver= webdriver.Chrome(options=op,executable_path='drivers/chromedriver.exe')
+    elif opc==2:
+        options=EdgeOptions()
+        #para no abrir el navegador
+        #options.add_argument("headless") 
 
-#Para que no aparezca el error de chrome
-op.add_experimental_option('excludeSwitches',['enable-logging'])
+        options.add_argument("disable-gpu")
+        options.use_chromium=True
 
-driver= webdriver.Chrome(options=op,executable_path='./chromedriver.exe')
+        driver=Edge(options=options,executable_path='drivers/msedgedriver.exe')
+
+    return driver
 
 
-#abre la web
-driver.get('https://twitter.com/utpfisc')
-
-#Obtengo el body para asì moverlo con el teclado
-element = driver.find_element_by_tag_name('body')
 
 def tweet(d):
 
@@ -89,7 +98,25 @@ def main(lim,text):
 
     
 if __name__ == '__main__':
+    #contador para detener la ejecucion del while
+    lim=int(input("Coloque el maximo de repeticiones del while> "))
+
+    #Para buscar por palabra
+    text=input("Coloque palabra para buscar en los tweets> ").split()
+
+    opc=tipoNavegador()
+
+    driver=navegador(opc)
+
+    #Hace la petición
+    driver.get('https://twitter.com/utpfisc')
+
+    #Obtengo el body para asì moverlo con el teclado
+    element = driver.find_element_by_tag_name('body')
+
     main(lim,text)
     time.sleep(3)
+
+    #Cierro el navegador
     driver.close()
 
