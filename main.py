@@ -41,9 +41,9 @@ def tweet(d):
 
     #Imprimo la fecha correspondiente al tweet
     fecha_tweet=d.find_element_by_xpath('./div[2]/div[1]/div/div/div[1]/a')
-    print(f"Fecha> {fecha_tweet.text}")
+    print(f"Fecha> {fecha_tweet.text}\n")
 
-    #Obtengo la imagen del twe
+    #Obtengo la imagen del tweet
     # Una sola imagen 
     # imagen=d.find_element_by_xpath('./div[2]/div[2]/div[2]/div/div/div/div/a/div/div[2]/div/img').get_attribute("src
    
@@ -71,12 +71,11 @@ def main(lim,text):
 
         #selecciono el aparcado contenedor del tweet
         div=driver.find_elements_by_xpath('//div[@data-testid="tweet"]')
-        
         for d in div: 
             #Imprimo el contenido de dentro del tweet
             texto_tweet=d.find_element_by_xpath('./div[2]/div[2]/div[1]/div/span')
             texto=texto_tweet.text
-            
+            #print(texto,end=f"\n ***{d}***")
             for t in range(len(text)):
                 if text[t] in texto.lower():
                     tweet(d)
@@ -113,7 +112,6 @@ if __name__ == '__main__':
 
     #Obtengo el body para asì moverlo con el teclado
     element = driver.find_element_by_tag_name('body')
-
     main(lim,text)
     time.sleep(3)
 
